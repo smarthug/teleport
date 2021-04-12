@@ -102,14 +102,17 @@ export default function Main() {
             player.getWorldPosition(playerPos)
             destination.getWorldPosition(destinationPos)
 
-            let tt = tmp.subVectors(destinationPos, playerPos)
-            console.log(tmp)
+            tmp.subVectors(destinationPos, playerPos)
+            // console.log(tmp)
 
-            console.log(tt)
+            // console.log(tt)
 
             // console.log(tmp.addVectors(cube.position, tmp))
 
-            box.position.copy(tmp.clone().addVectors(cube.position.clone(), tmp))
+            box.position.copy(tmp.add(cube.position))
+            // box.position.copy(tmp.addVectors(cube.position, tmp))
+            // box.position.copy(tmp.clone().addVectors(cube.position, tmp))
+            // box.position.copy(tmp.clone().addVectors(cube.position.clone(), tmp))
         }
 
         renderer.render(scene, camera);
