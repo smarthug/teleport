@@ -14,11 +14,7 @@ const controlledObj = {
     teleport: () => { }
 
 }
-const gui = new dat.GUI();
-gui.open();
 
-gui.add(controlledObj, "multipliedScalar")
-gui.add(controlledObj, "teleport")
 
 CameraControls.install({ THREE: THREE });
 
@@ -28,7 +24,7 @@ const clock = new THREE.Clock();
 
 let playerPos = new THREE.Vector3();
 let destinationPos = new THREE.Vector3();
-let cubePos = new THREE.Vector3();
+// let cubePos = new THREE.Vector3();
 
 let result = new THREE.Vector3();
 
@@ -82,6 +78,13 @@ export default function Main() {
 
         controlledObj.teleport = Test
 
+
+        const gui = new dat.GUI();
+        gui.open();
+
+        gui.add(controlledObj, "multipliedScalar")
+        gui.add(controlledObj, "teleport")
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -128,6 +131,9 @@ export default function Main() {
 
             cameraControls.enabled = !event.value;
 
+            deltaLine.visible = !deltaLine.visible;
+            deltaLine2.visible = !deltaLine2.visible;
+
         });
 
         control.attach(destination);
@@ -155,7 +161,9 @@ export default function Main() {
 
 
         if (control.dragging) {
-            // console.log("dragging")
+
+            deltaLine.visible = true;
+            deltaLine2.visible = true
             player.getWorldPosition(playerPos)
             destination.getWorldPosition(destinationPos)
 
@@ -166,49 +174,32 @@ export default function Main() {
 
             player.getWorldQuaternion(tmpQuaternion);
 
-            // console.log(delta);
             deltaLine.position.copy(playerPos);
-            deltaLine.quaternion.copy(player.getWorldQuaternion(tmpQuaternion));
-            tmp.set(1e-10, 1e-10, 1e-10).add(playerPos).sub(destinationPos).multiplyScalar(- 1);
-            tmp.applyQuaternion(deltaLine.quaternion.clone().invert());
+            // tmp.set(1e-10, 1e-10, 1e-10).add(playerPos).sub(destinationPos).multiplyScalar(- 1);
+            // tmp.set(1e-10, 1e-10, 1e-10).add(playerPos).sub(destinationPos).multiplyScalar(- 1);
+            tmp.set(1e-10, 1e-10, 1e-10).add(destinationPos).sub(playerPos);
+            ///???? 한번 물어볼까 ????
             deltaLine.scale.copy(tmp);
 
-            cube.getWorldPosition(cubePos);
-
-            deltaLine2.position.copy(cubePos);
-            deltaLine2.quaternion.copy(cube.getWorldQuaternion(tmpQuaternion));
-            tmp.set(1e-10, 1e-10, 1e-10).add(cubePos).sub(box.position).multiplyScalar(- 1);
-            tmp.applyQuaternion(deltaLine2.quaternion.clone().invert());
+            deltaLine2.position.copy(cube.position);
+            tmp.set(1e-10, 1e-10, 1e-10).add(cube.position).sub(box.position).multiplyScalar(- 1);
             deltaLine2.scale.copy(tmp);
         }
+
 
         renderer.render(scene, camera);
     }
 
     function Test() {
-        console.log("test")
-        console.log(player.getWorldPosition(playerPos))
-        console.log(destination.getWorldPosition(destinationPos))
-
-
-
-
-
-
-        // let tmp = new THREE.VectorcontrolledObj.multipliedScalar();
         result = tmp.subVectors(destinationPos, playerPos)
-
-        console.log(result);
-        // console.log(result.multiplyScalar(controlledObj.multipliedScalar));
         cube.position.add(result.multiplyScalar(controlledObj.multipliedScalar));
-        // box.position.add(result)
-        camera.position.set(result);
     }
 
 
 
-    return <div ref={containerRef}
-    ><button onClick={Test} style={{ position: "absolute" }}>TEST</button>
-        <canvas ref={canvasRef}></canvas>
-    </div>;
+    return (
+        <div ref={containerRef}>
+            <canvas ref={canvasRef}></canvas>
+        </div>
+    );
 }
