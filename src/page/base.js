@@ -7,6 +7,19 @@ import { TransformControls } from 'three/examples/jsm/controls/TransformControls
 
 import CameraControls from "camera-controls";
 
+import * as dat from 'dat.gui';
+
+const controlledObj = {
+    multipliedScalar: 3,
+    teleport:()=>{}
+
+}
+const gui = new dat.GUI();
+gui.open();
+
+gui.add(controlledObj, "multipliedScalar")
+gui.add(controlledObj, "teleport")
+
 CameraControls.install({ THREE: THREE });
 
 let cube, scene, camera, renderer, cameraControls, player, destination, box;
@@ -27,6 +40,8 @@ export default function Main() {
         Init();
         Animate();
 
+        controlledObj.teleport = Test
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -41,7 +56,6 @@ export default function Main() {
         );
         renderer = new THREE.WebGLRenderer({ antialias: true, canvas: canvasRef.current });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        // renderer.background = "red"
         // containerRef.current.appendChild(renderer.domElement);
 
         var geometry = new THREE.BoxGeometry(1, 1, 1);
@@ -103,16 +117,9 @@ export default function Main() {
             destination.getWorldPosition(destinationPos)
 
             tmp.subVectors(destinationPos, playerPos)
-            // console.log(tmp)
-
-            // console.log(tt)
-
-            // console.log(tmp.addVectors(cube.position, tmp))
-            tmp.multiplyScalar(3);
+          
+            tmp.multiplyScalar(controlledObj.multipliedScalar);
             box.position.copy(tmp.add(cube.position))
-            // box.position.copy(tmp.addVectors(cube.position, tmp))
-            // box.position.copy(tmp.clone().addVectors(cube.position, tmp))
-            // box.position.copy(tmp.clone().addVectors(cube.position.clone(), tmp))
         }
 
         renderer.render(scene, camera);
@@ -123,19 +130,17 @@ export default function Main() {
         console.log(player.getWorldPosition(playerPos))
         console.log(destination.getWorldPosition(destinationPos))
 
-        let dis = player.getWorldPosition(playerPos).distanceTo(destination.getWorldPosition(destinationPos))
-
-        console.log(dis)
+       
 
 
-        // let 
+      
 
-        let tmp = new THREE.Vector3();
+        // let tmp = new THREE.VectorcontrolledObj.multipliedScalar();
         result = tmp.subVectors(destinationPos, playerPos)
 
         console.log(result);
-        // console.log(result.multiplyScalar(3));
-        cube.position.add(result.multiplyScalar(3));
+        // console.log(result.multiplyScalar(controlledObj.multipliedScalar));
+        cube.position.add(result.multiplyScalar(controlledObj.multipliedScalar));
         // box.position.add(result)
         camera.position.set(result);
     }
