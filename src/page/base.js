@@ -108,7 +108,7 @@ export default function Main() {
             // console.log(tt)
 
             // console.log(tmp.addVectors(cube.position, tmp))
-
+            tmp.multiplyScalar(3);
             box.position.copy(tmp.add(cube.position))
             // box.position.copy(tmp.addVectors(cube.position, tmp))
             // box.position.copy(tmp.clone().addVectors(cube.position, tmp))
@@ -134,8 +134,8 @@ export default function Main() {
         result = tmp.subVectors(destinationPos, playerPos)
 
         console.log(result);
-
-        cube.position.add(result);
+        // console.log(result.multiplyScalar(3));
+        cube.position.add(result.multiplyScalar(3));
         // box.position.add(result)
         camera.position.set(result);
     }
