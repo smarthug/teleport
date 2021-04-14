@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import React, { useLayoutEffect, useState, useEffect, useRef } from "react";
+import React, {  useEffect, useRef } from "react";
 
 import { VRButton } from 'three/examples/jsm/webxr/VRButton.js';
 import { XRControllerModelFactory } from 'three/examples/jsm/webxr/XRControllerModelFactory.js';
@@ -74,6 +74,7 @@ export default function Main() {
         init();
         animate();
 
+            //eslint-disable-next-line
     }, []);
 
     function init() {
@@ -277,20 +278,20 @@ export default function Main() {
     }
 
 
-    function ThumbMove() {
-        var handedness = "unknown";
+    // function ThumbMove() {
+    //     var handedness = "unknown";
 
-        //determine if we are in an xr session
-        const session = renderer.xr.getSession();
-        let i = 0;
+    //     //determine if we are in an xr session
+    //     const session = renderer.xr.getSession();
+    //     let i = 0;
 
-        if (session) {
+    //     if (session) {
 
-            console.log(session.inputSources);
-            // 그냥 squeeze 버튼으로 조정 ????
-        }
+    //         console.log(session.inputSources);
+    //         // 그냥 squeeze 버튼으로 조정 ????
+    //     }
 
-    }
+    // }
 
 
 
