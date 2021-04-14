@@ -174,6 +174,7 @@ export default function Main() {
 
 
         scene.add(deltaLine)
+        scene.add(deltaLine2)
 
 
 
