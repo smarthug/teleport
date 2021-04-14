@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/three-spatial-controls/static/css/main.9d5b29c0.chunk.css",
+    "main.js": "/three-spatial-controls/static/js/main.37c59f6f.chunk.js",
+    "main.js.map": "/three-spatial-controls/static/js/main.37c59f6f.chunk.js.map",
+    "runtime-main.js": "/three-spatial-controls/static/js/runtime-main.b76e6eab.js",
+    "runtime-main.js.map": "/three-spatial-controls/static/js/runtime-main.b76e6eab.js.map",
+    "static/js/2.570d9df7.chunk.js": "/three-spatial-controls/static/js/2.570d9df7.chunk.js",
+    "static/js/2.570d9df7.chunk.js.map": "/three-spatial-controls/static/js/2.570d9df7.chunk.js.map",
+    "static/js/3.168b7e49.chunk.js": "/three-spatial-controls/static/js/3.168b7e49.chunk.js",
+    "static/js/3.168b7e49.chunk.js.map": "/three-spatial-controls/static/js/3.168b7e49.chunk.js.map",
+    "index.html": "/three-spatial-controls/index.html",
+    "static/css/main.9d5b29c0.chunk.css.map": "/three-spatial-controls/static/css/main.9d5b29c0.chunk.css.map",
+    "static/js/2.570d9df7.chunk.js.LICENSE.txt": "/three-spatial-controls/static/js/2.570d9df7.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b76e6eab.js",
+    "static/js/2.570d9df7.chunk.js",
+    "static/css/main.9d5b29c0.chunk.css",
+    "static/js/main.37c59f6f.chunk.js"
+  ]
+}
