@@ -1,4 +1,7 @@
 # three-spatial-controls
+
+![alt text](img/test.gif)
+
 A WebXR camera controls for three.js that beyonds 2D
 
 
