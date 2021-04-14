@@ -100,6 +100,7 @@ export default function Main() {
         renderer.xr.enabled = true;
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.xr.setFramebufferScaleFactor(2.0);
         vrButtonConRef.current.appendChild(VRButton.createButton(renderer));
 
         // controllers
@@ -126,23 +127,33 @@ export default function Main() {
             console.log('moved')
         }
 
+        function onLeftSqueezeStart(){
+            controlledObj.multipliedScalar++
+            console.log(controlledObj.multipliedScalar)
+        }
+
+        function onRightSqueezeStart(){
+            controlledObj.multipliedScalar--
+            console.log(controlledObj.multipliedScalar)
+        }
+
         controller1 = renderer.xr.getController(0);
         controller1.addEventListener('selectstart', onSelectStart);
         controller1.addEventListener('selectend', onSelectEnd);
         controller1.addEventListener('select', onMove);
 
-        controller1.addEventListener('squeezeStart', onMove);
-        controller1.addEventListener('squeezeEnd', onMove);
-        controller1.addEventListener('squeeze', onMove);
+        controller1.addEventListener('squeezestart', onLeftSqueezeStart);
+        // controller1.addEventListener('squeezeEnd', onMove);
+        // controller1.addEventListener('squeeze', onMove);
         scene.add(controller1);
 
         controller2 = renderer.xr.getController(1);
         controller2.addEventListener('selectstart', onSelectStart);
         controller2.addEventListener('selectend', onSelectEnd);
 
-        controller2.addEventListener('squeezeStart', onMove);
-        controller2.addEventListener('squeezeEnd', onMove);
-        controller2.addEventListener('squeeze', onMove);
+        controller2.addEventListener('squeezestart', onRightSqueezeStart);
+        // controller2.addEventListener('squeezeEnd', onMove);
+        // controller2.addEventListener('squeeze', onMove);
         scene.add(controller2);
 
 
@@ -161,13 +172,13 @@ export default function Main() {
 
         window.addEventListener('resize', onWindowResize, false);
 
-        player = new THREE.Mesh(new THREE.SphereBufferGeometry(0.05, 100, 100), new THREE.MeshStandardMaterial({color:"green"}));
+        player = new THREE.Mesh(new THREE.SphereBufferGeometry(0.05, 100, 100), new THREE.MeshStandardMaterial({ color: "green" }));
         player.position.set(0, 0.05, 0);
         // controllerGrip1.add(player)
         controller2.add(player)
         // scene.add(player);
 
-        destination = new THREE.Mesh(new THREE.SphereBufferGeometry(0.05, 100, 100), new THREE.MeshStandardMaterial({color:"yellow"}));
+        destination = new THREE.Mesh(new THREE.SphereBufferGeometry(0.05, 100, 100), new THREE.MeshStandardMaterial({ color: "yellow" }));
         destination.position.set(0, 0.05, 0);
         controller1.add(destination);
 
@@ -263,6 +274,22 @@ export default function Main() {
     function Test() {
         result = tmp.subVectors(destinationPos, playerPos)
         cube.position.add(result.multiplyScalar(controlledObj.multipliedScalar));
+    }
+
+
+    function ThumbMove() {
+        var handedness = "unknown";
+
+        //determine if we are in an xr session
+        const session = renderer.xr.getSession();
+        let i = 0;
+
+        if (session) {
+
+            console.log(session.inputSources);
+            // 그냥 squeeze 버튼으로 조정 ????
+        }
+
     }
 
 
