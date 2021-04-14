@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import React, { useEffect, useRef } from "react";
+import React, { useLayoutEffect, useState, useEffect, useRef } from "react";
 
 import { VRButton } from 'three/examples/jsm/webxr/VRButton.js';
 import { XRControllerModelFactory } from 'three/examples/jsm/webxr/XRControllerModelFactory.js';
@@ -22,24 +22,15 @@ var room;
 export default function Main() {
     const containerRef = useRef();
     const canvasRef = useRef();
+    const vrButtonConRef = useRef();
 
     useEffect(() => {
         init();
         animate();
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-
-
-
-
     function init() {
-
-
-
-
-
         scene = new THREE.Scene();
         scene.background = new THREE.Color(0x404040);
         scene.fog = new THREE.Fog(scene.background, 10, 15);
@@ -58,36 +49,14 @@ export default function Main() {
         light.position.set(1, 1, 1).normalize();
         scene.add(light);
 
-        // mone
-
-        // var geometry = new THREE.PlaneBufferGeometry(0.2, 0.09);
-        // geometry.rotateZ(Math.PI / 2);
-        // geometry.rotateX(- Math.PI / 2);
-
-        // var loader = new THREE.TextureLoader();
-        // // var texture = loader.load('https://cdn.glitch.com/cf086db5-7af7-4f20-8220-93d1d99150b7%2F100_dollar_bill_vector.png?1558543607686');
-        // var texture = loader.load('textures/bill2.png');
-        // var material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide });
-
-        // instancedMesh = new THREE.InstancedMesh(geometry, material, amount);
-        // instancedMesh.frustumCulled = false;
-        // room.add(instancedMesh);
-
-       
-
-
-
         // renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer = new THREE.WebGLRenderer({ antialias: true, canvas: canvasRef.current });
         renderer.xr.enabled = true;
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
-        containerRef.current.appendChild(renderer.domElement);
-
-        document.body.appendChild(VRButton.createButton(renderer));
+        vrButtonConRef.current.appendChild(VRButton.createButton(renderer));
 
         // controllers
-
         function onSelectStart() {
 
             this.userData.isSelecting = true;
@@ -103,7 +72,7 @@ export default function Main() {
             // Test 함수 의 호출을 여기서 ... 
         }
 
-        function onMove(){
+        function onMove() {
             console.log('moved')
         }
 
@@ -163,7 +132,7 @@ export default function Main() {
 
         if (controller.userData.isSelecting) {
 
-          
+
 
         }
 
@@ -182,22 +151,26 @@ export default function Main() {
         handleController(controller1);
         handleController(controller2);
 
-        
-
         // var delta = clock.getDelta(); 
-
-        
-
-        
 
         renderer.render(scene, camera);
 
     }
 
-    
 
 
-    return <div ref={containerRef}>
-        <canvas ref={canvasRef}></canvas>
-    </div>;
+
+    return (
+
+        <div ref={containerRef}>
+            <canvas ref={canvasRef} />
+            <div ref={vrButtonConRef}></div>
+        </div>
+    )
 }
+
+
+
+
+
+
