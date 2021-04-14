@@ -3,7 +3,7 @@ A WebXR camera controls for three.js that beyonds 2D
 
 
 ## Demo
-- [basic]("https://smarthug.github.io/three-spatial-controls/")
+- [basic](https://smarthug.github.io/three-spatial-controls/)
 
 
 ## How To Use
