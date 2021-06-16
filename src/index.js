@@ -116,42 +116,6 @@ export default class SpatialControls extends THREE.EventDispatcher {
     controller0.addEventListener("selectend", onSelectEnd);
     controller1.addEventListener("selectend", onSelectEnd);
 
-
-    if (righthanded) {
-      controller0.add(this._destHand);
-      controller1.add(this._playerHand);
-    } else {
-      controller0.add(this._playerHand);
-      controller1.add(this._destHand);
-    }
-
-    // if (righthanded) {
-    //   if (!isOculusBrowser) {
-    //     controller0.add(this._destHand);
-    //     controller1.add(this._playerHand);
-    //     controller0.addEventListener("squeezestart", onToSqueezeStart);
-    //     controller1.addEventListener("squeezestart", onFromSqueezeStart);
-    //   } else {
-    //     controller0.add(this._playerHand);
-    //     controller1.add(this._destHand);
-    //     controller0.addEventListener("squeezestart", onFromSqueezeStart);
-    //     controller1.addEventListener("squeezestart", onToSqueezeStart);
-    //   }
-    // } else {
-    //   if (!isOculusBrowser) {
-    //     controller0.add(this._playerHand);
-    //     controller1.add(this._destHand);
-    //     controller0.addEventListener("squeezestart", onFromSqueezeStart);
-    //     controller1.addEventListener("squeezestart", onToSqueezeStart);
-    //   } else {
-    //     controller0.add(this._destHand);
-    //     controller1.add(this._playerHand);
-    //     controller0.addEventListener("squeezestart", onToSqueezeStart);
-    //     controller1.addEventListener("squeezestart", onFromSqueezeStart);
-    //   }
-    // }
-
-
     if (righthanded === !isOculusBrowser) {
       controller0.add(this._destHand);
       controller1.add(this._playerHand);
@@ -207,9 +171,6 @@ export default class SpatialControls extends THREE.EventDispatcher {
       this._tmpVector.add(this._cameraRig.position)
     );
 
-    // controller 정보 가져와서 ... joystick 추출하기 ...
-
-    // player.getWorldQuaternion(tmpQuaternion);
 
     this._helperLine.position.copy(this._playerHandPos);
     tmp.set(1e-10, 1e-10, 1e-10).add(this._destHandPos).sub(this._playerHandPos);
@@ -219,11 +180,7 @@ export default class SpatialControls extends THREE.EventDispatcher {
     tmp.set(1e-10, 1e-10, 1e-10).add(this._cameraRig.position).sub(this._destMarker.position).multiplyScalar(- 1);
     this._helperLine2.scale.copy(tmp);
 
-    ////////////////////////////////////////
-    //// MODIFICATIONS FROM THREEJS EXAMPLE
-    //// check if in webXR session
-    //// if so, provide haptic feedback to the controller that raycasted onto object
-    //// (only if haptic actuator is available)
+
     const session = this._xr.getSession();
     if (session) {
       //only if we are in a webXR session
@@ -284,8 +241,7 @@ export default class SpatialControls extends THREE.EventDispatcher {
         }
       }
     }
-    ////
-    ////////////////////////////////
+
   }
 
   teleport() {
