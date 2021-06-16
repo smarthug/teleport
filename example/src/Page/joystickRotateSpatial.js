@@ -7,7 +7,8 @@ import { XRControllerModelFactory } from "three/examples/jsm/webxr/XRControllerM
 import { resizer, SceneSetUp } from "../Utils/utils";
 import Loader from "../Utils/loader";
 
-import SpatialControls from "../Utils/JoystickSpatialControls";
+import SpatialControls from 'three-spatial-controls'
+// import SpatialControls from "../Utils/JoystickSpatialControls";
 
 let scene, camera, renderer
 let spatialControls;
