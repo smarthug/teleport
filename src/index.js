@@ -60,17 +60,19 @@ export default class SpatialControls extends THREE.EventDispatcher {
 
     //a hand that represent player's position
     // 컨트롤러 그자체로 하는가 맞을까 ??
-    this._playerHand = new THREE.Mesh(
-      new THREE.SphereBufferGeometry(0.05, 100, 100),
-      new THREE.MeshStandardMaterial({ color: "green" })
-    );
+    // this._playerHand = new THREE.Mesh(
+    //   new THREE.SphereBufferGeometry(0.05, 100, 100),
+    //   new THREE.MeshStandardMaterial({ color: "green" })
+    // );
+    this._playerHand = new THREE.Object3D();
     this._playerHand.position.set(0, 0.05, 0);
 
     //a hand that represent the destination to teleport
-    this._destHand = new THREE.Mesh(
-      new THREE.SphereBufferGeometry(0.05, 100, 100),
-      new THREE.MeshStandardMaterial({ color: "yellow" })
-    );
+    // this._destHand = new THREE.Mesh(
+    //   new THREE.SphereBufferGeometry(0.05, 100, 100),
+    //   new THREE.MeshStandardMaterial({ color: "yellow" })
+    // );
+    this._destHand = new THREE.Object3D();
     this._destHand.position.set(0, 0.05, 0);
 
     // each xr controller hand position represent player positon, teleport destination position
