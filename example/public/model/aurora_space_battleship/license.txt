@@ -1,0 +1,11 @@
+Model Information:
+* title:	Aurora Space Battleship
+* source:	https://sketchfab.com/3d-models/aurora-space-battleship-fe023ee48e00436aaad1730e18148a24
+* author:	lightwarrior (https://sketchfab.com/lightwarrior)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Aurora Space Battleship" (https://sketchfab.com/3d-models/aurora-space-battleship-fe023ee48e00436aaad1730e18148a24) by lightwarrior (https://sketchfab.com/lightwarrior) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
