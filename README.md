@@ -1,22 +1,30 @@
 # three-spatial-controls
 
-![alt text](img/test.gif)
+> A WebXR camera control for three.js
 
-A WebXR camera controls for three.js that beyonds 2D
+[![NPM](https://img.shields.io/npm/v/three-spatial-controls.svg)](https://www.npmjs.com/package/three-spatial-controls) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+## Install
 
-## Demo
-- [basic](https://smarthug.github.io/three-spatial-controls/)
+```bash
+npm install --save three-spatial-controls
+```
 
+## Usage
 
-## How To Use
-- press Select button (Trigger button) to teleport
-- press right/left Squeeze button (Grab button) to increase/decrease teleport distance
+```jsx
+import React, { Component } from 'react'
 
+import MyComponent from 'three-spatial-controls'
+import 'three-spatial-controls/dist/index.css'
 
-## TODO
-- [ ] using thumb stick to increase/decrease teleport distance rather than squeeze button
-- [ ]  teleport xr camera
+class Example extends Component {
+  render() {
+    return <MyComponent />
+  }
+}
+```
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## License
 
+MIT © [smarthug](https://github.com/smarthug)
