@@ -15,8 +15,8 @@ npm install three-spatial-controls
 ## Demo
 
 - [basic](https://smarthug.github.io/three-spatial-controls/)
-
-- minimal example: https://codesandbox.io/s/goofy-elion-fltsu?file=/src/App.js
+- [handHelper](https://lab-delta.vercel.app/JoystickSpatialControls)
+- codesandbox example: https://codesandbox.io/s/goofy-elion-fltsu?file=/src/App.js
 
 ## How To Use
 
