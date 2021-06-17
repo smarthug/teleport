@@ -9,17 +9,20 @@
 ## Install
 
 ```bash
-npm install --save three-spatial-controls
+npm install three-spatial-controls
 ```
 
 ## Demo
 
 - [basic](https://smarthug.github.io/three-spatial-controls/)
 
+- minimal example: https://codesandbox.io/s/goofy-elion-fltsu?file=/src/App.js
+
 ## How To Use
 
 - press Select button (Trigger button) to teleport
 - press right/left Squeeze button (Grab button) to increase/decrease teleport distance
+- use right or left joystick to decide player's direction after a teleport
 
 ## Usage
 
