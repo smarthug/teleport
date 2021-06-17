@@ -49,7 +49,7 @@ export default class SpatialControls extends THREE.EventDispatcher {
     controller1,
     {
       destMarker,
-      righthanded = true,
+      rightHanded = true,
       playerHandHelper,
       destHandHelper,
       multiplyScalar = 3
@@ -62,7 +62,7 @@ export default class SpatialControls extends THREE.EventDispatcher {
     // player
     this._cameraRig = cameraRig;
 
-    this._hander = righthanded ? "right" : "left"
+    this._hander = rightHanded ? "right" : "left"
 
     if (destMarker === undefined) {
       destMarker = new THREE.Object3D();
@@ -137,12 +137,14 @@ export default class SpatialControls extends THREE.EventDispatcher {
     controller0.addEventListener("selectend", onSelectEnd);
     controller1.addEventListener("selectend", onSelectEnd);
 
-    if (righthanded === !isOculusBrowser) {
+    console.log(rightHanded, isOculusBrowser)
+    if (rightHanded === !isOculusBrowser) {
       controller0.add(this._destHand);
       controller1.add(this._playerHand);
       controller0.addEventListener("squeezestart", onToSqueezeStart);
       controller1.addEventListener("squeezestart", onFromSqueezeStart);
     } else {
+      console.log('wtf')
       controller0.add(this._playerHand);
       controller1.add(this._destHand);
       controller0.addEventListener("squeezestart", onFromSqueezeStart);

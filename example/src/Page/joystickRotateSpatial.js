@@ -122,18 +122,32 @@ export default function Main() {
     //   true,
     // );
 
+    // spatialControls = new SpatialControls(
+    //   renderer,
+    //   cameraRig,
+    //   controller0,
+    //   controller1,
+    //   // {
+    //     // destMarker:destMarker,
+    //     // rigthHanded:true,
+    //     // playerHandHelper:playerHandHelper,
+    //     // destHandHelper:destHandHelper
+    //     // multiplyScalar:5
+    //   // }
+    // );
+
     spatialControls = new SpatialControls(
       renderer,
       cameraRig,
       controller0,
       controller1,
-      // {
-        // destMarker:destMarker,
-        // rigthHanded:true,
-        // playerHandHelper:playerHandHelper,
-        // destHandHelper:destHandHelper
-        // multiplyScalar:5
-      // }
+      {
+        destMarker:destMarker,
+        rightHanded:true,
+        playerHandHelper:playerHandHelper,
+        destHandHelper:destHandHelper,
+        multiplyScalar:1
+      }
     );
   }
 
