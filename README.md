@@ -1,6 +1,6 @@
 # three-spatial-controls
 
-![alt text](img/test.gif)
+![alt text](img/spatial4.gif)
 
 > A WebXR camera control for three.js
 
