@@ -85,13 +85,55 @@ export default function Main() {
       obj.position.set(0, 0, -10);
     });
 
+
+    const loader = new THREE.FontLoader();
+
+    let playerHandHelper = new THREE.Group();
+    let destHandHelper = new THREE.Group();
+
+    loader.load("fonts/helvetiker_regular.typeface.json", (font) => {
+      const geometry = new THREE.TextGeometry("From", {
+        font: font,
+        size: 0.05,
+        height: 0.05,
+      });
+
+      playerHandHelper.add(
+        new THREE.Mesh(geometry, new THREE.MeshNormalMaterial())
+      );
+
+      const geometry2 = new THREE.TextGeometry("To", {
+        font: font,
+        size: 0.05,
+        height: 0.05,
+      });
+
+      destHandHelper.add(
+        new THREE.Mesh(geometry2, new THREE.MeshNormalMaterial())
+      );
+    });
+
+    // spatialControls = new SpatialControls(
+    //   renderer,
+    //   cameraRig,
+    //   controller0,
+    //   controller1,
+    //   destMarker,
+    //   true,
+    // );
+
     spatialControls = new SpatialControls(
       renderer,
       cameraRig,
       controller0,
       controller1,
-      destMarker,
-      true,
+      // {
+        // destMarker:destMarker,
+        // rigthHanded:true,
+        // playerHandHelper:playerHandHelper,
+        // destHandHelper:destHandHelper
+        // multiplyScalar:5
+      // }
     );
   }
 

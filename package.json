@@ -1,7 +1,7 @@
 {
   "name": "three-spatial-controls",
-  "version": "1.0.1",
-  "description": "A WebXR camera control for three.js",
+  "version": "1.0.3",
+  "description": "A XR camera control for three.js",
   "author": "smarthug",
   "license": "MIT",
   "repository": "smarthug/three-spatial-controls",
@@ -12,8 +12,8 @@
     "node": ">=10"
   },
   "scripts": {
-    "build": "microbundle-crl --no-compress --format modern,cjs",
-    "start": "microbundle-crl watch --no-compress --format modern,cjs",
+    "build": "microbundle-crl --no-compress --format modern,umd",
+    "start": "microbundle-crl watch --no-compress --format modern,umd",
     "prepare": "run-s build",
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
