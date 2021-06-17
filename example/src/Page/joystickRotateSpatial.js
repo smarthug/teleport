@@ -25,9 +25,9 @@ export default function Main() {
   }, []);
 
   function Init() {
-    
-    
-    
+
+    scene = new THREE.Scene();
+    renderer.xr.enabled = true;
     renderer = new THREE.WebGLRenderer({
       antialias: true,
       canvas: canvasRef.current,
@@ -36,28 +36,24 @@ export default function Main() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.xr.setFramebufferScaleFactor(2.0);
     renderer.setAnimationLoop(Animate);
-    
     vrButtonConRef.current.appendChild(VRButton.createButton(renderer));
-    
-    
-    
-    scene = new THREE.Scene();
-    renderer.xr.enabled = true;
-    camera = new THREE.PerspectiveCamera(75,window.innerWidth / window.innerHeight,0.1,10000);
+
+
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
     let cameraRig = new THREE.Group();
     let controller0 = renderer.xr.getController(0);
     let controller1 = renderer.xr.getController(1);
-    
+
     scene.add(cameraRig);
     cameraRig.add(camera);
     cameraRig.add(controller0);
     cameraRig.add(controller1);
-    
-    
+
+
     // cameraRig.position.set(0, 0, 5);
     SceneSetUp(scene);
     window.addEventListener("resize", () => resizer(camera, renderer));
-    
+
     const controllerModelFactory = new XRControllerModelFactory();
 
     let controllerGrip1 = renderer.xr.getControllerGrip(0);
@@ -113,8 +109,6 @@ export default function Main() {
     });
 
 
-
-
     spatialControls = new SpatialControls(
       renderer,
       cameraRig,
@@ -122,10 +116,10 @@ export default function Main() {
       controller1,
       {
         destMarker: destMarker,
-        // rightHanded: true,
-        // playerHandHelper: playerHandHelper,
-        // destHandHelper: destHandHelper,
-        // multiplyScalar: 1
+        rightHanded: true,
+        playerHandHelper: playerHandHelper,
+        destHandHelper: destHandHelper,
+        multiplyScalar: 1
       }
     );
   }
