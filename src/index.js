@@ -17,17 +17,11 @@ const tmp = new THREE.Vector3();
 
 const isOculusBrowser = /OculusBrowser/.test(navigator.userAgent);
 
-
 function TranslateHelperGeometry() {
-
   const geometry = new THREE.BufferGeometry();
-
   geometry.setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0, 1, 1, 1], 3));
-
   return geometry;
-
 }
-
 
 const matHelper = new THREE.MeshBasicMaterial({
   depthTest: false,
@@ -37,9 +31,6 @@ const matHelper = new THREE.MeshBasicMaterial({
   fog: false,
   toneMapped: false
 });
-
-
-
 
 export default class SpatialControls extends THREE.EventDispatcher {
   constructor(
@@ -73,27 +64,17 @@ export default class SpatialControls extends THREE.EventDispatcher {
     }
 
     // a hand that represent player's position
-    // 컨트롤러 그자체로 하는가 맞을까 ??
-    // this._playerHand = new THREE.Mesh(
-    //   new THREE.SphereBufferGeometry(0.05, 100, 100),
-    //   new THREE.MeshStandardMaterial({ color: "green" })
-    // );
     this._playerHand = new THREE.Object3D();
     this._playerHand.position.set(0, 0.05, 0);
-    console.log(playerHandHelper)
+    
     if (playerHandHelper === undefined) {
 
     } else {
       this._playerHand.add(playerHandHelper)
 
     }
-    // this._playerHand.add(playerHandHelper)
-
+   
     // a hand that represent the destination to teleport
-    // this._destHand = new THREE.Mesh(
-    //   new THREE.SphereBufferGeometry(0.05, 100, 100),
-    //   new THREE.MeshStandardMaterial({ color: "yellow" })
-    // );
     this._destHand = new THREE.Object3D();
     this._destHand.position.set(0, 0.05, 0);
     if (destHandHelper === undefined) {
@@ -149,10 +130,6 @@ export default class SpatialControls extends THREE.EventDispatcher {
       controller1.addEventListener("squeezestart", onToSqueezeStart);
     }
 
-
-
-
-    // tmpMatrix.lookAt(centerVec, tmpVec, upVec);
     tmpMatrix.lookAt(centerVec, new THREE.Vector3(0, 0, 1), upVec);
 
     tmpQuaternion.setFromRotationMatrix(tmpMatrix);
@@ -192,16 +169,11 @@ export default class SpatialControls extends THREE.EventDispatcher {
           (sourceXR.gamepad.axes[2] || sourceXR.gamepad.axes[3]) &&
           sourceXR.handedness === this._hander
         ) {
-          // var didPulse = sourceXR.gamepad.hapticActuators[0].pulse(0.8, 100);
-
-          // joystick input
-          // [0,0,좌우,상하]
+          // oculus joystick input
+          // [0,0,horizon,vertical]
           //   -1
           // -1   1
           //    1
-
-
-
           const axes = sourceXR.gamepad.axes;
 
           this._destHand.getWorldDirection(cameraVec);
