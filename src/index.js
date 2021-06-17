@@ -137,14 +137,12 @@ export default class SpatialControls extends THREE.EventDispatcher {
     controller0.addEventListener("selectend", onSelectEnd);
     controller1.addEventListener("selectend", onSelectEnd);
 
-    console.log(rightHanded, isOculusBrowser)
     if (rightHanded === !isOculusBrowser) {
       controller0.add(this._destHand);
       controller1.add(this._playerHand);
       controller0.addEventListener("squeezestart", onToSqueezeStart);
       controller1.addEventListener("squeezestart", onFromSqueezeStart);
     } else {
-      console.log('wtf')
       controller0.add(this._playerHand);
       controller1.add(this._destHand);
       controller0.addEventListener("squeezestart", onFromSqueezeStart);

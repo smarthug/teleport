@@ -25,53 +25,52 @@ export default function Main() {
   }, []);
 
   function Init() {
-    scene = new THREE.Scene();
-    SceneSetUp(scene);
-
-    camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      10000
-    );
-
+    
+    
+    
     renderer = new THREE.WebGLRenderer({
       antialias: true,
       canvas: canvasRef.current,
     });
-    renderer.xr.enabled = true;
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.xr.setFramebufferScaleFactor(2.0);
     renderer.setAnimationLoop(Animate);
-
+    
     vrButtonConRef.current.appendChild(VRButton.createButton(renderer));
-
-    window.addEventListener("resize", () => resizer(camera, renderer));
-
+    
+    
+    
+    scene = new THREE.Scene();
+    renderer.xr.enabled = true;
+    camera = new THREE.PerspectiveCamera(75,window.innerWidth / window.innerHeight,0.1,10000);
     let cameraRig = new THREE.Group();
-    cameraRig.position.set(0, 0, 5);
-    cameraRig.add(camera);
-    scene.add(cameraRig);
-
     let controller0 = renderer.xr.getController(0);
-    cameraRig.add(controller0);
-
     let controller1 = renderer.xr.getController(1);
+    
+    scene.add(cameraRig);
+    cameraRig.add(camera);
+    cameraRig.add(controller0);
     cameraRig.add(controller1);
-
+    
+    
+    // cameraRig.position.set(0, 0, 5);
+    SceneSetUp(scene);
+    window.addEventListener("resize", () => resizer(camera, renderer));
+    
     const controllerModelFactory = new XRControllerModelFactory();
 
     let controllerGrip1 = renderer.xr.getControllerGrip(0);
     controllerGrip1.add(
       controllerModelFactory.createControllerModel(controllerGrip1)
     );
-    cameraRig.add(controllerGrip1);
 
     let controllerGrip2 = renderer.xr.getControllerGrip(1);
     controllerGrip2.add(
       controllerModelFactory.createControllerModel(controllerGrip2)
     );
+
+    cameraRig.add(controllerGrip1);
     cameraRig.add(controllerGrip2);
 
     let destMarker = new THREE.Group();
@@ -113,28 +112,8 @@ export default function Main() {
       );
     });
 
-    // spatialControls = new SpatialControls(
-    //   renderer,
-    //   cameraRig,
-    //   controller0,
-    //   controller1,
-    //   destMarker,
-    //   true,
-    // );
 
-    // spatialControls = new SpatialControls(
-    //   renderer,
-    //   cameraRig,
-    //   controller0,
-    //   controller1,
-    //   // {
-    //     // destMarker:destMarker,
-    //     // rigthHanded:true,
-    //     // playerHandHelper:playerHandHelper,
-    //     // destHandHelper:destHandHelper
-    //     // multiplyScalar:5
-    //   // }
-    // );
+
 
     spatialControls = new SpatialControls(
       renderer,
@@ -142,11 +121,11 @@ export default function Main() {
       controller0,
       controller1,
       {
-        destMarker:destMarker,
-        rightHanded:true,
-        playerHandHelper:playerHandHelper,
-        destHandHelper:destHandHelper,
-        multiplyScalar:1
+        destMarker: destMarker,
+        // rightHanded: true,
+        // playerHandHelper: playerHandHelper,
+        // destHandHelper: destHandHelper,
+        // multiplyScalar: 1
       }
     );
   }

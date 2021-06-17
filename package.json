@@ -1,6 +1,6 @@
 {
   "name": "three-spatial-controls",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A XR camera control for three.js",
   "author": "smarthug",
   "license": "MIT",

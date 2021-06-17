@@ -24,60 +24,55 @@ npm install --save three-spatial-controls
 ## Usage
 
 ```jsx
-import * as THREE from "three";
+import * as THREE from 'three'
 import SpatialControls from 'three-spatial-controls'
 
 let scene, camera, renderer
-let spatialControls;
+let spatialControls
 
 function Init() {
-  // scene setup
-    scene = new THREE.Scene();
-    ...
+  // three.js setup
+  scene = new THREE.Scene()
+  renderer.xr.enabled = true
+  camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    10000
+  )
 
-    let cameraRig = new THREE.Group();
-    cameraRig.position.set(0, 0, 5);
-    cameraRig.add(camera);
-    scene.add(cameraRig);
+  // this will be the player
+  let cameraRig = new THREE.Group()
+  scene.add(cameraRig)
 
-    let controller0 = renderer.xr.getController(0);
-    cameraRig.add(controller0);
+  let controller0 = renderer.xr.getController(0)
+  let controller1 = renderer.xr.getController(1)
 
-    let controller1 = renderer.xr.getController(1);
-    cameraRig.add(controller1);
+  cameraRig.add(camera)
+  cameraRig.add(controller0)
+  cameraRig.add(controller1)
 
-    const controllerModelFactory = new XRControllerModelFactory();
-
-    let controllerGrip1 = renderer.xr.getControllerGrip(0);
-    controllerGrip1.add(
-      controllerModelFactory.createControllerModel(controllerGrip1)
-    );
-    cameraRig.add(controllerGrip1);
-
-    let controllerGrip2 = renderer.xr.getControllerGrip(1);
-    controllerGrip2.add(
-      controllerModelFactory.createControllerModel(controllerGrip2)
-    );
-    cameraRig.add(controllerGrip2);
-
-    let destMarker = new THREE.Group();
-    scene.add(destMarker);
-
-    spatialControls = new SpatialControls(
-      renderer,
-      cameraRig, // camera attached object , player
-      controller0,
-      controller1,
-      destMarker, // indicator of teleport destination
-      true,
-    );
-  }
+  spatialControls = new SpatialControls(
+    renderer,
+    cameraRig,
+    controller0,
+    controller1,
+    // optional config 
+    {
+      destMarker: destMarker,             // indicator of teleport destination ,THREE.Object3D
+      rightHanded: true,                  // righthanded or lefthanded
+      playerHandHelper: playerHandHelper, // helper obj for player hand, THREE.Object3D
+      destHandHelper: destHandHelper,     // helper obj for destination hand, THREE.Object3D
+      multiplyScalar: 1                   // teleport distance
+    }
+  )
+}
 
 function Animate() {
-    spatialControls.update();
+  spatialControls.update()
 
-    renderer.render(scene, camera);
-  }
+  renderer.render(scene, camera)
+}
 ```
 
 ## License
