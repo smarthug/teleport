@@ -1,5 +1,7 @@
 # three-spatial-controls
 
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/smarthug/teleport)
+
 ![alt text](img/spatial4.gif)
 
 > A WebXR camera control for three.js
