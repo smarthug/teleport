@@ -27,6 +27,9 @@ npm install three-spatial-controls
 - press right/left Squeeze button (Grab button) to increase/decrease teleport distance
 - use right or left joystick to decide player's direction after a teleport
 
+## Video
+https://www.youtube.com/watch?v=ut48erRros4&t=9s
+
 ## Usage
 
 ```jsx
